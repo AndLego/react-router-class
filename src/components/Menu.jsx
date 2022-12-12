@@ -6,7 +6,7 @@ const Menu = () => {
     <nav>
       <ul>
         {routes.map((ruta) => (
-          <li>
+          <li key={ruta.id}>
             <NavLink
               key={ruta.id}
               to={ruta.to}
