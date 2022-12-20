@@ -14,4 +14,14 @@ export const routes = [
     to: "/profile",
     text: "Profile",
   },
+  {
+    id: 4,
+    to: "/logIn",
+    text: "LogIn",
+  },
+  {
+    id: 5,
+    to: "/logOut",
+    text: "LogOut",
+  },
 ];

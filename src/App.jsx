@@ -5,24 +5,32 @@ import {
   ProfilePage,
   BlogPage,
   BlogPost,
+  LogIn,
+  LogOut,
 } from "./components/index";
 import "./App.css";
+import { AuthProvider } from "./utils/auth";
 
 function App() {
   return (
     <>
       <HashRouter>
-        <Menu />
-        <Routes>
-          <Route path="/" element={<Home />} />
+        <AuthProvider>
+          <Menu />
 
-          <Route path="/blog" element={<BlogPage />}>
-            <Route path=":slug" element={<BlogPost />} />
-          </Route>
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="*" element={<p>Not Found</p>} />
-        </Routes>
+            <Route path="/blog" element={<BlogPage />}>
+              <Route path=":slug" element={<BlogPost />} />
+            </Route>
+
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/logout" element={<LogOut />} />
+            <Route path="*" element={<p>Not Found</p>} />
+          </Routes>
+        </AuthProvider>
       </HashRouter>
     </>
   );
