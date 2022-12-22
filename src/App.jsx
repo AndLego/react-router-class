@@ -9,7 +9,7 @@ import {
   LogOut,
 } from "./components/index";
 import "./App.css";
-import { AuthProvider } from "./utils/auth";
+import { AuthProvider, AuthRoute } from "./utils/auth";
 
 function App() {
   return (
@@ -25,9 +25,25 @@ function App() {
               <Route path=":slug" element={<BlogPost />} />
             </Route>
 
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/profile"
+              element={
+                <AuthRoute>
+                  <ProfilePage />
+                </AuthRoute>
+              }
+            />
             <Route path="/login" element={<LogIn />} />
-            <Route path="/logout" element={<LogOut />} />
+
+            <Route
+              path="/logout"
+              element={
+                <AuthRoute>
+                  <LogOut />
+                </AuthRoute>
+              }
+            />
+
             <Route path="*" element={<p>Not Found</p>} />
           </Routes>
         </AuthProvider>
