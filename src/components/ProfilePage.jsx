@@ -6,7 +6,7 @@ const ProfilePage = () => {
   return (
     <>
       <h1>Profile</h1>
-      <p>Welcome!, {user.username}</p>
+      <p>Welcome!, {user.name}</p>
     </>
   );
 };

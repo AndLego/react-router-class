@@ -8,7 +8,7 @@ const LogIn = () => {
 
   const handleForm = (e) => {
     e.preventDefault();
-    login({ username: username.current.value });
+    login(username.current.value);
   };
 
   if (user) {
@@ -20,8 +20,8 @@ const LogIn = () => {
       <h1>Login</h1>
 
       <form action="" onSubmit={handleForm}>
-        <label htmlFor="">Username</label>
-        <input type="text" ref={username} />
+        <label htmlFor="username">Username</label>
+        <input type="text" ref={username} id="username" />
         <button>Log In</button>
       </form>
     </>
