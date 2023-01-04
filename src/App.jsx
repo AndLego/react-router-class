@@ -7,6 +7,7 @@ import {
   BlogPost,
   LogIn,
   LogOut,
+  EditForm,
 } from "./components/index";
 import "./App.css";
 import { AuthProvider, AuthRoute } from "./utils/auth";
@@ -27,6 +28,15 @@ function App() {
                 <Route path=":slug" element={<BlogPost />} />
               </Route>
 
+              <Route
+                path="/blog/:slug/edit"
+                element={
+                  <AuthRoute>
+                    <EditForm />
+                  </AuthRoute>
+                }
+              />
+
               {/* protegiendo la ruta profile */}
               <Route
                 path="/profile"
@@ -36,6 +46,7 @@ function App() {
                   </AuthRoute>
                 }
               />
+              
               <Route path="/login" element={<LogIn />} />
 
               <Route

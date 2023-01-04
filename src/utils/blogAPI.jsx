@@ -9,23 +9,26 @@ const BlogAPIProvider = ({ children }) => {
       slug: "que-es-react",
       content: "React es el mejor Framework de JavaScript, que lindo React",
       author: "Andrés Rodríguez",
+      id: "1",
     },
     {
       title: "¿Que es Angular?",
       slug: "que-es-angular",
       content: "Angular esta bien, que lindo React XD",
       author: "Carlos Rodríguez",
+      id: "12",
     },
     {
       title: "¿Que es Svelte?",
       slug: "que-es-svelte",
       content: "Svelte es el mejor Framework de JavaScript, que lindo Svelte",
       author: "Felipe Rodríguez",
+      id: "13",
     },
   ];
 
   const addPost = (title, slug, content, author, id) => {
-    const existingPost = blogData.find(post => post.slug === slug)
+    const existingPost = blogData.find((post) => post.slug === slug);
     const newPost = {
       title: title,
       slug: slug,
@@ -33,10 +36,10 @@ const BlogAPIProvider = ({ children }) => {
       author: author,
       id: id,
     };
-    
-    if(existingPost){
-      console.log("ya existe un post con ese nombre")
-      return
+
+    if (existingPost) {
+      alert("ya existe un post con ese nombre");
+      return;
     }
 
     blogData.push(newPost);
@@ -51,7 +54,20 @@ const BlogAPIProvider = ({ children }) => {
     console.log("post deleted");
   };
 
-  const data = { blogData, addPost, deletePost };
+  const editPost = (id, title, slug, content) => {
+    // const post = blogData.find((post) => post.id === id);
+    blogData.forEach((post) => {
+      if (post.id === id) {
+        post.title = title;
+        post.slug = slug;
+        post.content = content;
+      }
+    });
+
+    console.log(blogData);
+  };
+
+  const data = { blogData, addPost, deletePost, editPost };
 
   return <APIContext.Provider value={data}>{children}</APIContext.Provider>;
 };

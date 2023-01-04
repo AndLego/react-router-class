@@ -3,12 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 import { useAPI } from "../utils/blogAPI";
 
 const CreatePost = ({ user, update, setUpdate }) => {
+  const [create, setCreate] = React.useState(false);
   const { addPost } = useAPI();
   const titleRef = React.useRef(null);
   const contentRef = React.useRef(null);
 
   const handleSubmit = (e) => {
-    // blogData
     e.preventDefault();
 
     const title = titleRef.current.value;
@@ -22,20 +22,28 @@ const CreatePost = ({ user, update, setUpdate }) => {
 
     setUpdate(!update);
   };
+  const handleCreate = () => {
+    setCreate(!create);
+  };
 
   return (
-    <form action="" autoComplete="off" onSubmit={handleSubmit}>
-      <label htmlFor="title">
-        Title:
-        <input type="text" id="title" ref={titleRef} />
-      </label>
+    <>
+      <button onClick={handleCreate}>Create a New Post</button>
+      {create && (
+        <form action="" autoComplete="off" onSubmit={handleSubmit}>
+          <label htmlFor="title">
+            Title:
+            <input type="text" id="title" ref={titleRef} />
+          </label>
 
-      <label htmlFor="content">
-        Content:
-        <input type="text" id="content" ref={contentRef} />
-      </label>
-      <button>Create Post</button>
-    </form>
+          <label htmlFor="content">
+            Content:
+            <input type="text" id="content" ref={contentRef} />
+          </label>
+          <button>Create Post</button>
+        </form>
+      )}
+    </>
   );
 };
 
